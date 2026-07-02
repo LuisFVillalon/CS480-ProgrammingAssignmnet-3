@@ -1,11 +1,18 @@
 /*
- * sstf_scheduler.cpp
- *
- * Implements SstfScheduler::total_distance: repeatedly scans the
- * remaining requests to find the one nearest the current head
- * position, services it, and accumulates the seek distance until
- * every request has been visited.
- */
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: scan_scheduler.h
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+Implements SstfScheduler::total_distance: repeatedly scans the
+remaining requests to find the one nearest the current head
+position, services it, and accumulates the seek distance until
+every request has been visited.
+*/
 
 #include "sstf_scheduler.h"
 
