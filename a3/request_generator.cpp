@@ -1,5 +1,18 @@
-// Generates a random sequence of disk cylinder requests used to drive and
-// compare the different disk scheduling algorithms.
+/*
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: request_generator.cpp
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+Generates a random sequence of disk cylinder requests used to drive and
+compare the different disk scheduling algorithms.
+*/
+
+
 #include "request_generator.h"
 
 #include <cstdlib>
