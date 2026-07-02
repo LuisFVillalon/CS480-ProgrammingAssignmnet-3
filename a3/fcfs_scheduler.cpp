@@ -1,5 +1,17 @@
-// Implements the First-Come-First-Served (FCFS) disk scheduling algorithm,
-// servicing requests in the order they arrive and computing total head seek distance.
+/*
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: fcfs_scheduler.cpp
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+Implements the First-Come-First-Served (FCFS) disk scheduling algorithm,
+servicing requests in the order they arrive and computing total head seek distance.
+*/
+
 #include "fcfs_scheduler.h"
 
 #include <cstdlib>
