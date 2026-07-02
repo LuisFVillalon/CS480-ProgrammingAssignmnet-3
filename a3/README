@@ -1,53 +1,106 @@
-CS 480 - Programming Assignment 3
-Disk Arm Scheduling Simulator
+Class Information: CS 480, Summer 2026
+
+Assignment Information: Programming Assignment 3, Disk Arm Scheduling Simulator
 
 Team Members:
-  - [Name 1] - [Class account, e.g. cssc0000]
-  - [Name 2] - [Class account, e.g. cssc0001]
+  - Luis Villalon: cssc3169 (Use this account for testing)
+  - Bobby Bavongkhoun: cssc3110
 
-Class account to use for grading: [FILL IN ACCOUNT NAME HERE]
+List of project files: 
+  - README                  - This file.
+  - Makefile                - Builds the "simarm" executable.
+  - constants.h             - Shared simulation constants (cylinder range, initial head position).
+  - disk_scheduler.h        - Abstract DiskScheduler interface implemented by every scheduling algorithm.
+  - request_generator.h     - Declaration of the random request sequence generator.
+  - request_generator.cpp   - Implementation of the random request sequence generator.
+  - fcfs_scheduler.h        - Declaration of the FCFS (First-Come, First-Served) scheduler.
+  - fcfs_scheduler.cpp      - Implementation of the FCFS scheduler.
+  - sstf_scheduler.h        - Declaration of the SSTF (Shortest Seek Time First) scheduler.
+  - sstf_scheduler.cpp      - Implementation of the SSTF scheduler.
+  - scan_scheduler.h        - Declaration of the SCAN (elevator algorithm) scheduler.
+  - scan_scheduler.cpp      - Implementation of the SCAN scheduler.
+  - simarm.cpp              - Program entry point; generates a request sequence and runs it through every registered scheduler.
 
-Description:
-  This program simulates and compares three disk arm scheduling
-  algorithms:
-    1. FCFS  (First Come First Served)
-    2. SSTF  (Shortest Seek Time First)
-    3. SCAN  (Elevator algorithm)
+COMPILATION:
+From the a3/ directory, run:
+    make
+This compiles all source files with g++ and links them into an executable named "simarm".
 
-  The program generates a single random sequence of cylinder request
-  numbers in the range 0-999, then runs all three algorithms against
-  that same sequence, starting from a fixed initial disk arm position
-  (cylinder 50). It prints the generated sequence and the total number
-  of cylinders each algorithm's arm had to travel to service every
-  request.
+EXECUTION:
+    ./simarm <number-of-requests>
 
-Files:
-  simarm.cpp - Source code implementing the three algorithms and the
-               simulation driver.
-  Makefile   - Builds the "simarm" executable; also supports "clean".
-  README     - This file.
+  <number-of-requests>  A positive integer giving the number of cylinder
+                         requests to randomly generate and service. Required.
+  - Example:
+      ./simarm 64
 
-Build:
-  make
+The program generates a sequence of that many random cylinder requests in the
+range 0-999, using a fixed initial disk arm head position of 50 (see
+constants.h). It prints the generated sequence, then services that same
+sequence with each registered scheduling algorithm (FCFS, SSTF, SCAN),
+printing the total head movement (seek distance, in cylinders) required by
+each algorithm.
 
-  This produces an executable named "simarm" in the same directory.
+If the number of arguments is not exactly one, or the argument is not a
+positive integer, the program prints a usage message to stderr and exits
+with a non-zero status.
 
-Clean:
-  make clean
+CLEANUP:
+    make clean
 
-  This removes the "simarm" executable and any object files.
+DESIGN DECISIONS:
+  - Each scheduling algorithm is implemented behind a common DiskScheduler
+    interface (disk_scheduler.h) with name() and total_distance() methods.
+    simarm.cpp holds a vector of DiskScheduler pointers and drives all of them
+    identically, so adding a new algorithm only requires implementing the
+    interface and registering an instance in main() -- no existing algorithm
+    code has to change.
+  - Simulation-wide constants (cylinder range, initial head position) are
+    centralized in constants.h so every algorithm is evaluated under
+    identical starting conditions and the values only need to be changed in
+    one place.
+  - Request generation is factored into its own module (request_generator.h/
+    .cpp) so the exact same request sequence can be serviced by every
+    algorithm in a single run, making the reported seek totals directly
+    comparable.
+  - FCFS, SSTF, and SCAN were chosen because together they span the main
+    trade-offs a disk scheduler has to make: FCFS is the no-optimization
+    baseline everything else should beat, SSTF shows the benefit of greedily
+    minimizing each individual seek, and SCAN shows how bounding worst-case
+    wait time with a one-directional sweep compares against both. Running
+    all three on the same randomly generated request sequence makes those
+    trade-offs directly visible in the reported seek totals rather than
+    just theoretical.
 
-Run:
-  ./simarm <length-of-sequence>
+EXTRA FEATURES:
+  - None beyond the required FCFS, SSTF, and SCAN algorithms.
 
-  Example:
-    ./simarm 64
+DEFICIENCIES:
+  - No known bugs at this time.
 
-  This generates a random sequence of 64 cylinder numbers and prints
-  the total head movement for FCFS, SSTF, and SCAN.
-
-Notes:
-  - The initial disk arm (head) position is fixed at cylinder 50 for
-    all three algorithms so that the results are directly comparable.
-  - Valid cylinder numbers range from 0 to 999.
-  - The program does not use the system() call.
+LESSONS LEARNED:
+  - Working on this assignment made concrete how disk I/O requests aren't
+    serviced in the order they arrive just because they're on a shared
+    resource: the OS has to queue pending cylinder requests and hand them to
+    the disk arm in whatever order actually minimizes total seek movement,
+    since the arm is a physical, slow-moving piece of hardware and seek time
+    dominates disk access latency. That queuing/ordering decision is exactly
+    what a disk scheduling algorithm is -- a policy for picking the next
+    request out of the pending set.
+  - Implementing FCFS first showed why scheduling matters at all: servicing
+    requests in raw arrival order ignores their cylinder positions entirely,
+    so the arm can end up sweeping back and forth across the disk when a
+    smarter ordering would have covered the same requests with far less
+    total movement. FCFS's only real benefit is fairness/simplicity -- no
+    request ever waits behind a "closer" one that arrived later.
+  - Implementing SSTF made the greedy trade-off concrete: always servicing
+    the closest pending request minimizes each individual seek and gives
+    great average-case total movement, but it can starve requests that sit
+    far from the head if closer requests keep arriving, since there's no
+    mechanism to prioritize a request just because it's been waiting.
+  - Implementing SCAN showed the fix for that starvation problem: sweeping
+    the arm in one direction, servicing every request in its path, then
+    reversing at the end of the disk bounds a request's worst-case wait to
+    at most one full sweep. That fairness guarantee costs some average-case
+    seek distance compared to SSTF, since the arm may pass close to a
+    request early in a sweep but not service it until much later.
