@@ -1,7 +1,7 @@
 /*
 CS 480 - Operating Systems [2026 Summer Session]
 Project: Assignment 3
-File: scan_scheduler.cpp
+File: sstf_scheduler.cpp
 
 Team Members:
 - Luis Villalon: cssc3169 
