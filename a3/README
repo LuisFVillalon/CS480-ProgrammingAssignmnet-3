@@ -1,0 +1,53 @@
+CS 480 - Programming Assignment 3
+Disk Arm Scheduling Simulator
+
+Team Members:
+  - [Name 1] - [Class account, e.g. cssc0000]
+  - [Name 2] - [Class account, e.g. cssc0001]
+
+Class account to use for grading: [FILL IN ACCOUNT NAME HERE]
+
+Description:
+  This program simulates and compares three disk arm scheduling
+  algorithms:
+    1. FCFS  (First Come First Served)
+    2. SSTF  (Shortest Seek Time First)
+    3. SCAN  (Elevator algorithm)
+
+  The program generates a single random sequence of cylinder request
+  numbers in the range 0-999, then runs all three algorithms against
+  that same sequence, starting from a fixed initial disk arm position
+  (cylinder 50). It prints the generated sequence and the total number
+  of cylinders each algorithm's arm had to travel to service every
+  request.
+
+Files:
+  simarm.cpp - Source code implementing the three algorithms and the
+               simulation driver.
+  Makefile   - Builds the "simarm" executable; also supports "clean".
+  README     - This file.
+
+Build:
+  make
+
+  This produces an executable named "simarm" in the same directory.
+
+Clean:
+  make clean
+
+  This removes the "simarm" executable and any object files.
+
+Run:
+  ./simarm <length-of-sequence>
+
+  Example:
+    ./simarm 64
+
+  This generates a random sequence of 64 cylinder numbers and prints
+  the total head movement for FCFS, SSTF, and SCAN.
+
+Notes:
+  - The initial disk arm (head) position is fixed at cylinder 50 for
+    all three algorithms so that the results are directly comparable.
+  - Valid cylinder numbers range from 0 to 999.
+  - The program does not use the system() call.

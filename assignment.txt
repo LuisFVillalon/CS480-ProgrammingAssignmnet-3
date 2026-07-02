@@ -1,0 +1,30 @@
+Design and implement a program, library, or functions that include the three disk arm 
+scheduling algorithms discussed in the text.
+Design and write a simulation program that generates a random sequence of numbers from 
+0 - 999, then runs each of the three algorithms using this sequence, then prints the total
+distance (the number of cylinders) the arm needs to traverse in each of the three 
+algorithms.
+
+Your program will be tested by compiling and executing on edoras. Your program shall be 
+written such that it compiles and executes cleanly when using gcc/g++. Note - you must 
+use a Makefile. You shall create a sub-directory named "a3" in your home directory. In it, 
+you shall place all of your project files, including your Makefile. Your source files shall 
+contain sufficient comments for making the source easy to read. Name the executable "simarm".
+
+To turn-in your assignment, one student from each team goes into the assignment on Canvas, then
+create and upload an archive file (tarball or zip) with the project files.  Additionally, upload
+the README file and state which class account to use for grading the team's project in the comments.  
+
+When running simarm, the user shall provide one argument to indicate the length of the 
+sequence of cylinder numbers to generate when running simarm.  
+Create ~/a3 by hand.
+Create all necessary project files. Put them into ~/a3.
+The Makefile shall create an executable named "simarm" in this same directory (~/a3).
+The system call "system()" will NOT be allowed
+You must work in pairs (team of 2 students)
+You may use gcc, or g++ compiler on this assignment
+
+To run:
+cssc0000%  simarm 64  <enter | return>
+{this would generate a sequence of 64 random numbers each indicating a cylinder number 
+to access in turn] 

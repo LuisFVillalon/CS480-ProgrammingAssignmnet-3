@@ -1,0 +1,33 @@
+Criteria	Ratings	Pts
+README File
+5 pts
+Full Points
+README file includes content as specified in the README format doc
+0 pts
+Minimum Points
+README exists but contains minimal info
+/ 5 pts
+Makefile
+5 pts
+Full Points
+Makefile correctly compiles the project using at least two rules: (1) make the project and (2) clean up files
+0 pts
+Minimum Points
+Minimal or no Makefile
+/ 5 pts
+Three algorithms
+20 pts
+Full Points
+Meets all requirements for all 3 algorithms which are implemented correctly
+0 pts
+Minimum Points
+Did not implement the requirements for this component, or, implementation was incorrect, or, does not work correctly
+/ 20 pts
+Simulation Component
+20 pts
+Full Points
+Meets all requirements for generating the sequence of numbers, runs each of the three algorithms using this same sequence, and printing the results correctly
+0 pts
+Minimum Points
+Did not implement the requirements for this component, or, implementation was incorrect, or, does not work correctly
+/ 20 pts
