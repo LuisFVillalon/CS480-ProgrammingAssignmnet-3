@@ -1,9 +1,16 @@
 /*
- * sstf_scheduler.h
- *
- * Shortest Seek Time First: always service whichever remaining
- * request is closest to the arm's current position.
- */
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: sstf_scheduler.h
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+Shortest Seek Time First: always service whichever remaining
+request is closest to the arm's current position.
+*/
 
 #ifndef SIMARM_SSTF_SCHEDULER_H
 #define SIMARM_SSTF_SCHEDULER_H
