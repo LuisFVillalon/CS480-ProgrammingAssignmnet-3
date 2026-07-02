@@ -1,8 +1,16 @@
 /*
- * request_generator.h
- *
- * Generates random cylinder request sequences.
- */
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: request_generator.h
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+Generates random cylinder request sequences.
+*/
+
 
 #ifndef SIMARM_REQUEST_GENERATOR_H
 #define SIMARM_REQUEST_GENERATOR_H
