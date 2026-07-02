@@ -1,9 +1,15 @@
 /*
- * fcfs_scheduler.h
- *
- * First Come First Served: service the requests in the exact order
- * they were generated.
- */
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: fcfs_scheduler.h
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+First Come First Served: service the requests in the exact order they were generated.
+*/
 
 #ifndef SIMARM_FCFS_SCHEDULER_H 
 #define SIMARM_FCFS_SCHEDULER_H 
