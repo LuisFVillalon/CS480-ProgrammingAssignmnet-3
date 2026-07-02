@@ -1,24 +1,31 @@
 /*
- * simarm.cpp
- *
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: simarm.cpp
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
  * Disk arm scheduling simulator.
- *
+ 
  * Generates a random sequence of cylinder requests (each in the range
  * 0 - 999) and services that same sequence with a set of disk arm
  * scheduling algorithms (FCFS, SSTF, SCAN, ...). For each algorithm
  * the program prints the total number of cylinders the disk arm had
  * to travel (the "seek distance") to service the whole request
  * sequence, starting from a fixed initial head position.
- *
+
  * Usage:
  *     simarm <number-of-requests>
- *
+
  * Example:
  *     simarm 64
- *
+
  * Build with the accompanying Makefile ("make"), which produces the
  * executable "simarm".
- */
+*/
 
 #include <cstdlib>
 #include <ctime>
