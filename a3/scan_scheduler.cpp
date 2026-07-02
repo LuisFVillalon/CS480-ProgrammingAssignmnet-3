@@ -1,12 +1,19 @@
 /*
- * scan_scheduler.cpp
- *
- * Implements ScanScheduler, which computes total seek distance under
- * the SCAN (elevator) algorithm: sort pending requests, sweep upward
- * from the initial head position to the highest cylinder (servicing
- * requests along the way and continuing to the disk's end), then
- * sweep back down servicing the remaining requests below the start.
- */
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: scan_scheduler.cpp
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+Implements ScanScheduler, which computes total seek distance under
+the SCAN (elevator) algorithm: sort pending requests, sweep upward
+from the initial head position to the highest cylinder (servicing
+requests along the way and continuing to the disk's end), then
+sweep back down servicing the remaining requests below the start.
+*/
 
 #include "scan_scheduler.h"
 
