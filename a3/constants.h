@@ -1,8 +1,15 @@
 /*
- * constants.h
- *
- * Shared simulation constants.
- */
+CS 480 - Operating Systems [2026 Summer Session]
+Project: Assignment 3
+File: constant.h
+
+Team Members:
+- Luis Villalon: cssc3169 
+- Bobby Bavongkhoun: cssc3110
+
+Description:
+ Shared simulation constants
+*/
 
 #ifndef SIMARM_CONSTANTS_H
 #define SIMARM_CONSTANTS_H
